@@ -34,9 +34,9 @@ namespace Restaurant
             _saladDecorator.AddTopping(topping);
         }
 
-        public void AddExtra(IExtra extra)
+        public void SetDrink(IDrink drink)
         {
-            _orderBuilder.AddExtra(extra);
+            _orderBuilder.SetDrink(drink);
         }
 
         public void Pay(IPaymentStrategy strategy)

@@ -10,19 +10,25 @@ namespace Restaurant
     public class Order
     {
         public Client Client { get; private set; }
-        public List<IExtra> Extras { get; private set; }
+        public IDessert Dessert { get; private set; }
+        public IDrink Drink { get; private set; }
         public IIngredient Salad { get; private set; }
 
-        public Order(Client client, List<IExtra> extras, IIngredient salad)
+        public Order(Client client, IIngredient salad, IDessert dessert, IDrink drink)
         {
             Client = client;
-            Extras = extras;
             Salad = salad;
+            Dessert = dessert;
+            Drink = drink;
         }
         
         public double GetPrice()
         {
-            return Extras.Sum(x => x.GetPrice()) + Salad.GetPrice();
+            double price = 0;
+            price += Dessert?.GetPrice() ?? 0;
+            price += Drink?.GetPrice() ?? 0;
+            price += Salad?.GetPrice() ?? 0;
+            return price;
         }
 
         public bool Pay(IPaymentStrategy strategy)

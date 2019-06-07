@@ -8,12 +8,12 @@ namespace Restaurant
     public class OrderBuilder
     {
         private Client _client;
-        private List<IExtra> _extras;
+        private IDessert _dessert;
+        private IDrink _drink;
         private IIngredient _salad;
 
         public OrderBuilder()
         {
-            _extras = new List<IExtra>();
         }
 
         public OrderBuilder SetClient(Client client)
@@ -28,9 +28,15 @@ namespace Restaurant
             return this;
         }
 
-        public OrderBuilder AddExtra(IExtra extra)
+        public OrderBuilder SetDessert(IDessert dessert)
         {
-            _extras.Add(extra);
+            _dessert = dessert;
+            return this;
+        }
+        
+        public OrderBuilder SetDrink(IDrink drink)
+        {
+            _drink = drink;
             return this;
         }
 
@@ -38,9 +44,9 @@ namespace Restaurant
         {
             if(_client == null)
                 throw new ClientNotFoundException();
-            if(_extras == null || _salad == null)
+            if(_dessert == null && _drink == null && _salad == null)
                 throw new NothingToOrderException();
-            return new Order(_client, _extras, _salad);
+            return new Order(_client, _salad, _dessert, _drink);
         }
         
     }
