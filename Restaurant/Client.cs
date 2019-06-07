@@ -14,7 +14,7 @@ namespace Restaurant
 
         public void RingBiper()
         {
-            Console.WriteLine(Name + ", your order is ready!");
+            Console.WriteLine("ring");
         }
     }
 }

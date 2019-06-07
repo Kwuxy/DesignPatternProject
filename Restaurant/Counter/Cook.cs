@@ -1,31 +1,39 @@
 using System;
+using System.Threading.Tasks;
 
 namespace Restaurant.Counter
 {
     public class Cook
     {
-        private string _name;
+        public string Name { get; private set; }
         private BarCounter _counter;
-        public bool IsBusy { get; private set; }
-
+        private bool _isBusy;
+        
         public Cook(string name, BarCounter counter)
         {
-            _name = name;
+            Name = name;
             _counter = counter;
-            IsBusy = false;
+            _isBusy = false;
         }
 
         public void CookMeal(Order order)
         {
-            IsBusy = true;
+            System.Threading.Thread.Sleep(1000);
             
-            Console.WriteLine("The cook " + _name + " is cooking the order of " + order.Client.Name);
-            System.Threading.Thread.Sleep(5000);
-            Console.WriteLine("The cook " + _name + " has finished cooking the order of " + order.Client.Name);
+            order.IsReady = true;
+            SetIsBusy(false);
 
-            IsBusy = false;
-            
             _counter.NotifyOrderIsReady(order);
+        }
+
+        public void SetIsBusy(bool busy)
+        {
+            _isBusy = busy;
+        }
+        
+        public bool IsBusy()
+        {
+            return _isBusy;
         }
         
         

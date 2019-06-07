@@ -13,6 +13,9 @@ namespace Restaurant
         public IDessert Dessert { get; private set; }
         public IDrink Drink { get; private set; }
         public IIngredient Salad { get; private set; }
+        
+        public bool IsReady { get; set; }
+        
 
         public Order(Client client, IIngredient salad, IDessert dessert, IDrink drink)
         {

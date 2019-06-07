@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Threading;
+using Restaurant.Counter;
+using Restaurant.Extras;
+using Restaurant.Salad;
 
 namespace Restaurant
 {
@@ -6,7 +10,18 @@ namespace Restaurant
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var counter = new BarCounter();
+            
+            
+            counter.AssignOrder(new Order(new Client("Nicolas"), new Batavia(), new Tiramisu(), new Coffee()));
+            System.Threading.Thread.Sleep(1000);
+            counter.AssignOrder(new Order(new Client("Ornella"), new Batavia(), new Tiramisu(), new Coffee()));
+            System.Threading.Thread.Sleep(1000);
+            counter.AssignOrder(new Order(new Client("Ifan"), new Batavia(), new Tiramisu(), new Coffee()));
+            System.Threading.Thread.Sleep(1000);
+            counter.AssignOrder(new Order(new Client("Jean"), new Batavia(), new Tiramisu(), new Coffee()));
+
+            
         }
     }
 }

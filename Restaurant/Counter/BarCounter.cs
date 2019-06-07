@@ -1,31 +1,32 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Restaurant.Counter
 {
     public class BarCounter
     {
-        private Queue<Order> _waitingOrders;
-        private List<Cook> _cooks;
+        public Queue<Order> WaitingOrders { get; set; }
+        private readonly List<Cook> _cooks;
 
         public BarCounter()
         {
             _cooks = PopulateCooks();
-            _waitingOrders = new Queue<Order>();
+            WaitingOrders = new Queue<Order>();
         }
 
         public void AssignOrder(Order order)
         {
             foreach (var cook in _cooks)
             {
-                if (!cook.IsBusy)
+                if (!cook.IsBusy())
                 {
-                    cook.CookMeal(order);
+                    cook.SetIsBusy(true);
+                    Task.Run(() => cook.CookMeal(order));
                     return;
                 }
             }
-            
-            _waitingOrders.Enqueue(order);
+            WaitingOrders.Enqueue(order);
         }
 
         public void NotifyOrderIsReady(Order order)
@@ -37,9 +38,9 @@ namespace Restaurant.Counter
 
         private void CheckIfAnOrderIsWaiting()
         {
-            if (_waitingOrders.Count > 0)
+            if (WaitingOrders.Count > 0)
             {
-                AssignOrder(_waitingOrders.Dequeue());
+                AssignOrder(WaitingOrders.Dequeue());
             }
         }
 
