@@ -8,9 +8,9 @@ namespace Restaurant
 {
     public class OrderScreen
     {
-        private OrderBuilder _orderBuilder;
-        private SaladDecorator _saladDecorator;
-        private BarCounter _counter;
+        private readonly OrderBuilder _orderBuilder;
+        private readonly SaladDecorator _saladDecorator;
+        private readonly BarCounter _counter;
 
         public OrderScreen()
         {
@@ -44,7 +44,7 @@ namespace Restaurant
             _orderBuilder.SetSalad(_saladDecorator.GetSalad());
             var order = _orderBuilder.Build();
 
-            if (order.Pay(strategy))
+            if (Math.Abs(order.Pay(strategy)) > 0.000001)
             {
                 _counter.AssignOrder(order);
             }

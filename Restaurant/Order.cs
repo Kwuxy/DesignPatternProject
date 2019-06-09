@@ -25,6 +25,11 @@ namespace Restaurant
             Drink = drink;
         }
         
+        public double Pay(IPaymentStrategy strategy)
+        {
+            return strategy.Pay(GetPrice());
+        }
+        
         public double GetPrice()
         {
             double price = 0;
@@ -34,9 +39,6 @@ namespace Restaurant
             return price;
         }
 
-        public bool Pay(IPaymentStrategy strategy)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }
