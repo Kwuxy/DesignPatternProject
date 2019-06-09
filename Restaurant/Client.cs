@@ -5,7 +5,10 @@ namespace Restaurant
     public class Client
     {
         public string Name { get; private set; }
+        public bool IsServed { get; private set; }
+        
         private Order _order;
+        
 
         public Client(string name)
         {
@@ -14,7 +17,7 @@ namespace Restaurant
 
         public void RingBiper()
         {
-            Console.WriteLine("ring");
+            IsServed = true;
         }
     }
 }
