@@ -16,6 +16,8 @@ namespace Restaurant
         
         public bool IsReady { get; set; }
         
+        public double AmountPaid { get; private set; }
+        
 
         public Order(Client client, IIngredient salad, IDessert dessert, IDrink drink)
         {
@@ -23,11 +25,14 @@ namespace Restaurant
             Salad = salad;
             Dessert = dessert;
             Drink = drink;
+            
+            Client.Order = this;
         }
         
         public double Pay(IPaymentStrategy strategy)
         {
-            return strategy.Pay(GetPrice());
+            AmountPaid = strategy.Pay(GetPrice());
+            return AmountPaid;
         }
         
         public double GetPrice()

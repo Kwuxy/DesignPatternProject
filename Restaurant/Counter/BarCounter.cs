@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace Restaurant.Counter
@@ -13,11 +14,13 @@ namespace Restaurant.Counter
 
         public void AssignOrder(Order order)
         {
-            cook.CookMeal(order);
+            cook.PrepareOrder(order);
         }
 
         public void NotifyOrderIsReady(Order order)
         {
+            order.IsReady = true;
+            Console.WriteLine("The cook has notified the counter that the order is ready.");
             order.Client.RingBiper();
         }
     }

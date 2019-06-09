@@ -42,7 +42,7 @@ namespace Restaurant
 
         public Order Build()
         {
-            if(_client == null)
+            if (_client == null)
                 throw new ClientNotFoundException();
             if(_dessert == null && _drink == null && _salad == null)
                 throw new NothingToOrderException();

@@ -1,4 +1,6 @@
 
+using System;
+
 namespace Restaurant.Counter
 {
     public class Cook
@@ -13,10 +15,10 @@ namespace Restaurant.Counter
             Counter = counter;
         }
 
-        public void CookMeal(Order order)
+        public void PrepareOrder(Order order)
         {
-            System.Threading.Thread.Sleep(1000);
-            
+            Console.WriteLine("The cook is preparing the order of {0}", order.Client.Name);
+            order.IsReady = true;
             Counter.NotifyOrderIsReady(order);
         }
         

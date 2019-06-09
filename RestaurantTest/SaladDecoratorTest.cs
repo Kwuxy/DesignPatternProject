@@ -21,7 +21,7 @@ namespace RestaurantTest
         }
         
         [TestMethod()]
-        public void ShouldComplexSalad_Cost7()
+        public void ShouldComplexSalad_Cost13()
         {
             _saladDecorator = new SaladDecorator();
             _saladDecorator.ChooseSalad(new Iceberg());

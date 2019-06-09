@@ -14,7 +14,7 @@ namespace Restaurant.Payment
         public double Pay(double amount)
         {
             var amountPaid = (amount * (1 + _creditType.GetTax())) / _creditType.GetNumberOfPayments();
-            Console.WriteLine("{0}$ were paid. {1} payments left.", amount, _creditType.GetNumberOfPayments());
+            Console.WriteLine("{0}$ were paid.", amountPaid);
             return amountPaid;
         }
     }

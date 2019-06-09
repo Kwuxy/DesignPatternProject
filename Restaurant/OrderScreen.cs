@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.InteropServices;
 using Restaurant.Counter;
 using Restaurant.Extras;
 using Restaurant.Payment;
@@ -42,9 +43,11 @@ namespace Restaurant
         public void Pay(IPaymentStrategy strategy)
         {
             _orderBuilder.SetSalad(_saladDecorator.GetSalad());
+            
             var order = _orderBuilder.Build();
-
-            if (Math.Abs(order.Pay(strategy)) > 0.000001)
+            order.Pay(strategy);
+            
+            if (Math.Abs(order.AmountPaid) > 0.000001)
             {
                 _counter.AssignOrder(order);
             }
