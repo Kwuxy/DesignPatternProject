@@ -19,7 +19,6 @@ namespace Restaurant.Counter
 
         public void NotifyOrderIsReady(Order order)
         {
-            order.IsReady = true;
             Console.WriteLine("The cook has notified the counter that the order is ready.");
             order.Client.RingBiper();
         }
