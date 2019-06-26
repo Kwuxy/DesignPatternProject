@@ -5,7 +5,7 @@ using Restaurant.Salad;
 
 namespace Restaurant
 {
-    public class OrderBuilder
+    public class OrderBuilder : IOrderBuilder
     {
         private Client _client;
         private IDessert _dessert;
@@ -16,25 +16,25 @@ namespace Restaurant
         {
         }
 
-        public OrderBuilder SetClient(Client client)
+        public IOrderBuilder SetClient(Client client)
         {
             _client = client;
             return this;
         }
 
-        public OrderBuilder SetSalad(IIngredient ingredient)
+        public IOrderBuilder SetSalad(IIngredient ingredient)
         {
             _salad = ingredient;
             return this;
         }
 
-        public OrderBuilder SetDessert(IDessert dessert)
+        public IOrderBuilder SetDessert(IDessert dessert)
         {
             _dessert = dessert;
             return this;
         }
         
-        public OrderBuilder SetDrink(IDrink drink)
+        public IOrderBuilder SetDrink(IDrink drink)
         {
             _drink = drink;
             return this;
