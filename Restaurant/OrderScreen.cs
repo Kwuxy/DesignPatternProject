@@ -9,7 +9,7 @@ namespace Restaurant
 {
     public class OrderScreen
     {
-        private readonly OrderBuilder _orderBuilder;
+        private readonly IOrderBuilder _orderBuilder;
         private readonly SaladDecorator _saladDecorator;
         private readonly BarCounter _counter;
 
