@@ -35,6 +35,11 @@ namespace Restaurant
             _saladDecorator.AddTopping(topping);
         }
 
+        public void SetDessert(IDessert dessert)
+        {
+            _orderBuilder.SetDessert(dessert);
+        }
+
         public void SetDrink(IDrink drink)
         {
             _orderBuilder.SetDrink(drink);
