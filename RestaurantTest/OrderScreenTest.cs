@@ -16,14 +16,14 @@ namespace RestaurantTest
         {
             _orderScreen = new OrderScreen();
         }
-        
+
         [TestMethod()]
         public void ShouldCreatePayAndProcessOrder()
         {
             var client = new Client("Visitor");
-            
+
             Assert.IsFalse(client.IsServed);
-            
+
             _orderScreen.SetClient(client);
             _orderScreen.ChooseSalad(new Batavia());
             _orderScreen.AddSaladTopping(new Avocado());
@@ -32,14 +32,12 @@ namespace RestaurantTest
             _orderScreen.SetDessert(new Tiramisu());
             _orderScreen.SetDrink(new Soda());
             _orderScreen.Pay(new CreditPayment(new TenPayments()));
-            
+
             Assert.IsTrue(client.Order.IsReady);
             Assert.IsInstanceOfType(client.Order.Drink, typeof(Soda));
             Assert.AreEqual(20.5, client.Order.GetPrice());
-            Assert.AreEqual(2.3575,client.Order.AmountPaid, 0.000001);
+            Assert.AreEqual(2.3575, client.Order.AmountPaid, 0.000001);
             Assert.IsTrue(client.IsServed);
-            
         }
-        
     }
 }

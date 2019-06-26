@@ -1,4 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Restaurant.CustomExceptions;
 using Restaurant.Salad;
 
 
@@ -31,6 +32,14 @@ namespace RestaurantTest
             
             var salad = _saladDecorator.GetSalad();
             Assert.AreEqual(13, salad.GetPrice());
+        }
+        
+        [TestMethod()]
+        [ExpectedException(typeof(SaladNotFoundException))]
+        public void ShouldAdditionOfToppingWithoutSalad_ThrowException()
+        {
+            _saladDecorator = new SaladDecorator();
+            _saladDecorator.AddTopping(new Chicken());
         }
     }
 }
