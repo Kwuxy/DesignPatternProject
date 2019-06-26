@@ -29,13 +29,14 @@ namespace RestaurantTest
             _orderScreen.AddSaladTopping(new Avocado());
             _orderScreen.AddSaladTopping(new ChickPeas());
             _orderScreen.AddSaladTopping(new Chicken());
+            _orderScreen.SetDessert(new Tiramisu());
             _orderScreen.SetDrink(new Soda());
             _orderScreen.Pay(new CreditPayment(new TenPayments()));
             
             Assert.IsTrue(client.Order.IsReady);
             Assert.IsInstanceOfType(client.Order.Drink, typeof(Soda));
-            Assert.AreEqual(17, client.Order.GetPrice());
-            Assert.AreEqual(1.955,client.Order.AmountPaid, 0.000001);
+            Assert.AreEqual(20.5, client.Order.GetPrice());
+            Assert.AreEqual(2.3575,client.Order.AmountPaid, 0.000001);
             Assert.IsTrue(client.IsServed);
             
         }
